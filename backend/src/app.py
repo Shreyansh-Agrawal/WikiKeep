@@ -1,13 +1,14 @@
+from dotenv import load_dotenv
+load_dotenv()
+
 import logging
 
 from api.v1.routes.articles import router as article_router
 from api.v1.routes.auth import router as auth_router
 from api.v1.routes.health import router as health_router
 from api.v1.routes.search import router as search_router
-from dotenv import load_dotenv
 from fastapi import FastAPI
 
-load_dotenv()
 
 logging.basicConfig(
     filename="app.log",
