@@ -5,3 +5,6 @@ class ApiPaths:
     LOGIN = "/login"
     ARTICLES = "/articles"
     ARTICLES_BY_EMAIL = "/articles/{email}"
+    ARTICLE_TAGS = "/articles/{page_id}/tags"
+    WIKI_SEARCH_URL = "https://en.wikipedia.org/w/api.php"
+    WIKI_SUMMARY_URL = "https://en.wikipedia.org/api/rest_v1/page/summary"

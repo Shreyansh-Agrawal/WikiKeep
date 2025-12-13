@@ -113,6 +113,57 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Update tags",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{wiki_keep_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"tags\": [\"Programming\", \"Python\", \"Backend\"]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/api/v1/articles/:page_id/tags",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"articles",
+						":page_id",
+						"tags"
+					],
+					"variable": [
+						{
+							"key": "page_id",
+							"value": "46332325"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

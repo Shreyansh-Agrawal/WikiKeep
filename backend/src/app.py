@@ -32,7 +32,7 @@ app = FastAPI(
 
 @app.exception_handler(Exception)
 async def handle_interal_server_exception(request: Request, exc: Exception):
-    logger.error(
+    logger.exception(
         CommonLog.UNEXPECTED_ERROR_FOR_ENDPOINT.format(
             method=request.method, path=request.url.path
         )

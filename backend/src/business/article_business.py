@@ -62,14 +62,8 @@ class ArticleBusiness:
             logger.exception(CommonLog.FAILED_TO_GENERATE_TAGS.format(error=error))
             return []
 
-    async def update_tags(self, email: str, page_id: int, title: str, summary: str):
+    async def update_tags(self, email: str, page_id: int, tags: list[str]):
         try:
-            tags = await self.generate_tags(title, summary)
-            logger.info(CommonLog.AI_GENERATED_TAGS.format(tags=tags))
-
-            if not tags:
-                return
-
             await self.db_helper.write(
                 Queries.UPDATE_ARTICLE_TAGS,
                 params=(tags, email, page_id),

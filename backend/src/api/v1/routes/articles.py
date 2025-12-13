@@ -1,12 +1,14 @@
 from controllers.article_controller import (
     get_articles_controller,
     save_articles_controller,
+    update_article_tags_controller,
 )
 from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, status
 from helpers.api_paths import ApiPaths
 from helpers.auth_helper import AuthHelper
 from helpers.common_log import CommonLog
 from models.article import Article
+from models.tags import Tags
 
 router = APIRouter()
 
@@ -26,8 +28,17 @@ async def get_user_articles(
 async def save_user_article(
     payload: Article,
     background_tasks: BackgroundTasks,
-    current_user_email=Depends(AuthHelper.get_jwt_claims)
+    current_user_email=Depends(AuthHelper.get_jwt_claims),
 ):
     return await save_articles_controller(
         current_user_email, payload.dict(), background_tasks
+    )
+
+
+@router.patch(ApiPaths.ARTICLE_TAGS, status_code=status.HTTP_200_OK)
+async def update_article_tags(
+    page_id: int, payload: Tags, current_user_email=Depends(AuthHelper.get_jwt_claims)
+):
+    return await update_article_tags_controller(
+        current_user_email, page_id, payload.tags
     )
