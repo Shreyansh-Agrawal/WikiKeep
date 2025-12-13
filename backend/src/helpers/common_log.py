@@ -1,6 +1,10 @@
 class CommonLog:
     SUCCESS = "success"
     SEARCH_REQUEST = "Received search request for keyword: {keyword}"
+    SIGNUP_REQUEST = "Received signup request for email: {email}"
+    LOGIN_REQUEST = "Received login request for email: {email}"
+    SAVE_ARTICLE_REQUEST = "Received save article request for email: {email}"
+    GET_SAVED_ARTICLE_REQUEST = "Received get saved article request for email: {email}"
     USER_EXISTS = "User already exists"
     INVALID_CREDENTIALS = "Invalid email or password"
     SIGNUP_SUCCESS = "User created successfully"
@@ -9,3 +13,5 @@ class CommonLog:
     ARTICLE_ALREADY_SAVED = "Article already saved"
     ARTICLE_SAVED_SUCCESSFULLY = "Article saved successfully"
     UNEXPECTED_ERROR = "Unexpected Error Occurred: {error}"
+    INTERNAL_SERVER_ERROR = "Internal Server Error"
+    UNEXPECTED_ERROR_FOR_ENDPOINT = "Unexpected Error Occurred: {method} {path}"
