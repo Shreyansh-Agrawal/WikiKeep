@@ -86,7 +86,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/v1/search?search_keyword=python&limit=3",
+					"raw": "http://127.0.0.1:8000/api/v1/search?search_keyword=python&limit=5",
 					"protocol": "http",
 					"host": [
 						"127",
@@ -107,7 +107,7 @@
 						},
 						{
 							"key": "limit",
-							"value": "3"
+							"value": "5"
 						}
 					]
 				}

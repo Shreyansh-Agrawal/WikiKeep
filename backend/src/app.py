@@ -32,7 +32,11 @@ app = FastAPI(
 
 @app.exception_handler(Exception)
 async def handle_interal_server_exception(request: Request, exc: Exception):
-    logger.error(CommonLog.UNEXPECTED_ERROR_FOR_ENDPOINT.format(method=request.method, path=request.url.path))
+    logger.error(
+        CommonLog.UNEXPECTED_ERROR_FOR_ENDPOINT.format(
+            method=request.method, path=request.url.path
+        )
+    )
     return JSONResponse(
         status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
         content={"detail": CommonLog.INTERNAL_SERVER_ERROR},

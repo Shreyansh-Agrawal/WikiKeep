@@ -2,7 +2,7 @@ from controllers.article_controller import (
     get_articles_controller,
     save_articles_controller,
 )
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, status
 from helpers.api_paths import ApiPaths
 from helpers.auth_helper import AuthHelper
 from helpers.common_log import CommonLog
@@ -24,6 +24,10 @@ async def get_user_articles(
 
 @router.post(ApiPaths.ARTICLES, status_code=status.HTTP_201_CREATED)
 async def save_user_article(
-    payload: Article, current_user_email=Depends(AuthHelper.get_jwt_claims)
+    payload: Article,
+    background_tasks: BackgroundTasks,
+    current_user_email=Depends(AuthHelper.get_jwt_claims)
 ):
-    return await save_articles_controller(current_user_email, payload.dict())
+    return await save_articles_controller(
+        current_user_email, payload.dict(), background_tasks
+    )

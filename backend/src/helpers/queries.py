@@ -12,3 +12,8 @@ class Queries:
         INSERT INTO articles (user_email, page_id, title, summary, url)
         VALUES ($1, $2, $3, $4, $5)
     """
+    UPDATE_ARTICLE_TAGS = """
+        UPDATE articles
+        SET tags = $1
+        WHERE user_email = $2 AND page_id = $3
+    """

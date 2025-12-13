@@ -15,3 +15,8 @@ class CommonLog:
     UNEXPECTED_ERROR = "Unexpected Error Occurred: {error}"
     INTERNAL_SERVER_ERROR = "Internal Server Error"
     UNEXPECTED_ERROR_FOR_ENDPOINT = "Unexpected Error Occurred: {method} {path}"
+    FAILED_TO_GENERATE_TAGS = "Failed to generate tags with error: {error}"
+    AI_GENERATED_TAGS = "AI Generated Tags: {tags}"
+    UPDATE_TAG_FAILED = (
+        "Update tag failed for user={email} page_id={page_id} error={error}"
+    )
