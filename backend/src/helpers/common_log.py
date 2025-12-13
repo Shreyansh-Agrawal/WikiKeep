@@ -1,5 +1,11 @@
 class CommonLog:
+    SUCCESS = "success"
     SEARCH_REQUEST = "Received search request for keyword: {keyword}"
     USER_EXISTS = "User already exists"
     INVALID_CREDENTIALS = "Invalid email or password"
     SIGNUP_SUCCESS = "User created successfully"
+    INVALID_TOKEN = "Invalid token"
+    ACCESS_DENIED = "Access Denied"
+    ARTICLE_ALREADY_SAVED = "Article already saved"
+    ARTICLE_SAVED_SUCCESSFULLY = "Article saved successfully"
+    UNEXPECTED_ERROR = "Unexpected Error Occurred: {error}"

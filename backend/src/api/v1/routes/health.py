@@ -1,8 +1,10 @@
 from fastapi import APIRouter
+from helpers.api_paths import ApiPaths
+from helpers.common_log import CommonLog
 
 router = APIRouter()
 
 
-@router.get("/health")
+@router.get(ApiPaths.HEALTH)
 async def health():
-    return {"status": "success"}
+    return {"status": CommonLog.SUCCESS}
