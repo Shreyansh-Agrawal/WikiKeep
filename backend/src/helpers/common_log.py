@@ -5,6 +5,9 @@ class CommonLog:
     LOGIN_REQUEST = "Received login request for email: {email}"
     SAVE_ARTICLE_REQUEST = "Received save article request for email: {email}"
     GET_SAVED_ARTICLE_REQUEST = "Received get saved article request for email: {email}"
+    DELETE_SAVED_ARTICLE_REQUEST = (
+        "Received delete saved article request for email: {email}"
+    )
     USER_EXISTS = "User already exists"
     INVALID_CREDENTIALS = "Invalid email or password"
     SIGNUP_SUCCESS = "User created successfully"

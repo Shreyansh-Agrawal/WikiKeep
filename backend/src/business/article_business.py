@@ -74,3 +74,14 @@ class ArticleBusiness:
                     email=mask_email(email), page_id=page_id, error=error
                 )
             )
+
+    async def delete_article(self, email: str, page_id: int):
+        logger.info(
+            CommonLog.DELETE_SAVED_ARTICLE_REQUEST.format(
+                email=mask_email(email), page_id=page_id
+            )
+        )
+
+        await self.db_helper.write(
+            Queries.DELETE_ARTICLE_BY_EMAIL_AND_PAGE_ID, params=(email, page_id)
+        )

@@ -6,7 +6,7 @@ from helpers.auth_helper import AuthHelper
 router = APIRouter()
 
 
-@router.get(ApiPaths.SEARCH)
+@router.get(ApiPaths.SEARCH_ARTICLES)
 async def search_articles(
     search_keyword: str = Query(..., min_length=1, description="Search Keyword"),
     limit: int = Query(default=5, ge=1, le=10, description="Number of results"),

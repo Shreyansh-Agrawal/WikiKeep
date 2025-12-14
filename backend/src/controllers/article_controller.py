@@ -25,9 +25,13 @@ async def save_articles_controller(user_email: str, payload, background_tasks):
             article_business.update_tags, user_email, payload.get("page_id"), tags
         )
 
-    return {"message": CommonLog.ARTICLE_SAVED_SUCCESSFULLY}
+    return {"detail": CommonLog.ARTICLE_SAVED_SUCCESSFULLY}
 
 
 async def update_article_tags_controller(email: str, page_id: int, tags: list[str]):
     await article_business.update_tags(email, page_id, tags)
-    return {"message": CommonLog.TAGS_UPDATED_SUCCESSFULLY}
+    return {"detail": CommonLog.TAGS_UPDATED_SUCCESSFULLY}
+
+
+async def delete_saved_article_controller(email: str, page_id: int):
+    await article_business.delete_article(email, page_id)

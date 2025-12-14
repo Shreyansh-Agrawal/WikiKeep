@@ -52,19 +52,86 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/v1/health",
-					"protocol": "http",
+					"raw": "{{BASE_URL}}/api/v1/health",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{BASE_URL}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"v1",
 						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"shreyansh.agrawal4@gmail.com\",\r\n    \"password\": \"AbcAbc123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/v1/auth/signup",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"let response = pm.response.json();\r",
+							"pm.environment.set(\"wiki_keep_token\", response.token);"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"shreyansh.agrawal@gmail.com\",\r\n    \"password\": \"AbcAbc123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/v1/auth/login",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"auth",
+						"login"
 					]
 				}
 			},
@@ -86,19 +153,15 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/v1/search?search_keyword=python&limit=5",
-					"protocol": "http",
+					"raw": "{{BASE_URL}}/api/v1/search/articles?search_keyword=python&limit=5",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{BASE_URL}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"v1",
-						"search"
+						"search",
+						"articles"
 					],
 					"query": [
 						{
@@ -115,7 +178,74 @@
 			"response": []
 		},
 		{
-			"name": "Update tags",
+			"name": "Get Saved Articles",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{wiki_keep_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/api/v1/articles",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"articles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save Article",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{wiki_keep_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"page_id\": 88595,\r\n    \"title\": \"Reticulated python\",\r\n    \"summary\": \"The reticulated python is a python species native to South and Southeast Asia. It is the world's longest snake, and the third heaviest snake. It is a non-venomous constrictor and an excellent swimmer that has been reported far out at sea. It has colonized many small islands within its range. Because of its wide distribution, it is listed as least concern on the IUCN Red List. In several countries in its range, it is hunted for its skin, for use in traditional medicine, and for sale as pets. Due to this, it is one of the most economically important reptiles worldwide. In very rare cases, reticulated pythons have killed and swallowed adult humans.\",\r\n    \"url\": \"https://en.wikipedia.org/wiki/Reticulated_python\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/api/v1/articles",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"articles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update tags for a Saved Article",
 			"request": {
 				"auth": {
 					"type": "bearer",
@@ -139,15 +269,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://127.0.0.1:8000/api/v1/articles/:page_id/tags",
-					"protocol": "http",
+					"raw": "{{BASE_URL}}/api/v1/articles/:page_id/tags",
 					"host": [
-						"127",
-						"0",
-						"0",
-						"1"
+						"{{BASE_URL}}"
 					],
-					"port": "8000",
 					"path": [
 						"api",
 						"v1",
@@ -164,6 +289,49 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Delete Saved Article",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{wiki_keep_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/api/v1/articles/:page_id",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"articles",
+						":page_id"
+					],
+					"variable": [
+						{
+							"key": "page_id",
+							"value": "88595"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "BASE_URL",
+			"value": "",
+			"type": "default"
 		}
 	]
 }

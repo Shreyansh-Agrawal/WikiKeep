@@ -6,7 +6,7 @@ auth_business = AuthBusiness()
 
 async def signup_controller(email: str, password: str):
     await auth_business.signup(email, password)
-    return {"message": CommonLog.SIGNUP_SUCCESS}
+    return {"detail": CommonLog.SIGNUP_SUCCESS}
 
 
 async def login_controller(email: str, password: str):

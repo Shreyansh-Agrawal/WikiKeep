@@ -17,3 +17,7 @@ class Queries:
         SET tags = $1
         WHERE user_email = $2 AND page_id = $3
     """
+    DELETE_ARTICLE_BY_EMAIL_AND_PAGE_ID = """
+        DELETE FROM articles
+        WHERE user_email = $1 AND page_id = $2
+    """
