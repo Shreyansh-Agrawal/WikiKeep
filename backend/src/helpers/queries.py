@@ -21,3 +21,31 @@ class Queries:
         DELETE FROM articles
         WHERE user_email = $1 AND page_id = $2
     """
+
+
+"""
+Below queries are used to create the db tables -
+
+
+CREATE TABLE IF NOT EXISTS users (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    email STRING NOT NULL UNIQUE,
+    hashed_password STRING NOT NULL,
+    created_at TIMESTAMP DEFAULT now()
+);
+
+
+CREATE TABLE IF NOT EXISTS articles (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    user_email STRING NOT NULL,
+    page_id INT NOT NULL,
+    title STRING NOT NULL,
+    summary STRING,
+    url STRING,
+    tags STRING[],
+    created_at TIMESTAMP DEFAULT now(),
+
+    UNIQUE (user_email, page_id)
+);
+
+"""

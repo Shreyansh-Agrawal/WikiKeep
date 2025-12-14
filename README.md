@@ -6,6 +6,10 @@ The application integrates with the Wikipedia API to fetch article data and uses
 
 The system includes authentication, follows REST API best practices, and is deployed using Render and CockroachDB.
 
+## API Documentation
+
+https://wikikeep.onrender.com/docs
+
 ## Getting started
 
 Consider using `pipenv` to manage your project dependencies.
